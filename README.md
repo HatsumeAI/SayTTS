@@ -99,7 +99,7 @@ HTTP_HOST=0.0.0.0 HTTP_PORT=3000 FFMPEG_PATH=/usr/local/bin/ffmpeg swift run
 It's possible to use high quality siri voices using say command as default voice.
 You need to go to System Settings - Assessibility - Spoken content, then select default language and voice.
 
-Siri voices cannot be referred directory as voice argument but it works as default one.
+Siri voices cannot be referred directly as voice argument but it works as default one.
 
 ## API Endpoint
 
