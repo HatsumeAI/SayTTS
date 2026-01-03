@@ -37,8 +37,10 @@ struct TTSServerGenerator {
 
             do {
                 try process.run()
-                // Write text to stdin with proper UTF-8 encoding
-                try stdinPipe.fileHandleForWriting.write(contentsOf: text.data(using: .utf8)!)
+                // Remove newlines to avoid TTY line-by-line processing issue
+                // When input is from a TTY, say only saves audio for the last line
+                let sanitizedText = text.replacingOccurrences(of: "\n", with: " ")
+                try stdinPipe.fileHandleForWriting.write(contentsOf: sanitizedText.data(using: .utf8)!)
                 try stdinPipe.fileHandleForWriting.close()
             } catch {
                 cont.resume(throwing: TTSServerError.processFailed(error))
